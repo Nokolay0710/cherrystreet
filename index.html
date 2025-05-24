@@ -4,246 +4,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Улица Вишнёвая - Сбор средств на дорогу</title>
+    <title>Улица Вишнёвая - Учёт сборов</title>
     <style>
         * {
             box-sizing: border-box;
             font-family: Arial, sans-serif;
         }
         body {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-            line-height: 1.6;
             color: #333;
         }
         header {
             text-align: center;
             padding: 20px 0;
-            border-bottom: 2px solid #4CAF50;
+            border-bottom: 3px solid #2c5f2d;
             margin-bottom: 30px;
         }
-        h1 {
-            color: #4CAF50;
+        h1, h2 {
+            color: #2c5f2d;
         }
-        .info-block {
-            background-color: #f9f9f9;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
+        .table-section {
+            margin: 40px 0;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
         th, td {
             border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
+            padding: 10px;
+            text-align: center;
+            min-width: 100px;
         }
         th {
-            background-color: #4CAF50;
+            background-color: #2c5f2d;
             color: white;
+            position: sticky;
+            top: 0;
         }
         tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: #f9f9f9;
         }
-        .paid {
-            color: green;
-            font-weight: bold;
+        input[type="checkbox"] {
+            transform: scale(1.5);
         }
         .total {
             font-weight: bold;
-            margin-top: 20px;
-        }
-        .month-selector {
             margin: 20px 0;
+            padding: 15px;
+            background-color: #e8f5e9;
+            border-radius: 5px;
         }
         footer {
             margin-top: 40px;
             text-align: center;
-            font-size: 0.9em;
             color: #666;
+            padding: 20px;
+            border-top: 1px solid #ddd;
         }
     </style>
 </head>
 <body>
     <header>
         <h1>Улица Вишнёвая</h1>
-        <p>Сбор средств на ремонт дороги</p>
+        <p>Учёт сборов на дорогу</p>
     </header>
 
-    <div class="info-block">
-        <h2>Информация о сборах</h2>
-        <p><strong>2024 год:</strong></p>
-        <ul>
-            <li>Первый сбор: 6,000 руб. (до 15 июня)</li>
-            <li>Второй сбор: 5,000 руб. (до 15 июля)</li>
-            <li>Ежемесячные сборы: 1,000 руб. (начиная с августа)</li>
-        </ul>
+    <!-- Разовые сборы -->
+    <div class="table-section">
+        <h2>Разовые сборы 2024</h2>
+        <div class="total" id="initial-total">
+            Общая сумма: 11,000 руб. × 100 домов = 1,100,000 руб.
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Дом №</th>
+                    <th>Сбор 6,000 руб.</th>
+                    <th>Сбор 5,000 руб.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Сгенерировано 100 домов -->
+                <script>
+                    // Генерация таблицы разовых сборов
+                    document.write(Array.from({length: 100}, (_, i) => 
+                        `<tr>
+                            <td>${i+1}</td>
+                            <td><input type="checkbox" id="initial-6k-${i+1}" onclick="saveState()"></td>
+                            <td><input type="checkbox" id="initial-5k-${i+1}" onclick="saveState()"></td>
+                        </tr>`
+                    ).join(''));
+                </script>
+            </tbody>
+        </table>
     </div>
 
-    <div class="month-selector">
-        <h3>Выберите месяц для отображения:</h3>
-        <select id="monthSelect" onchange="updateTable()">
-            <option value="june">Июнь 2024 (6,000 руб.)</option>
-            <option value="july">Июль 2024 (5,000 руб.)</option>
-            <option value="august">Август 2024 (1,000 руб.)</option>
-            <option value="september">Сентябрь 2024 (1,000 руб.)</option>
-            <option value="october">Октябрь 2024 (1,000 руб.)</option>
-            <option value="november">Ноябрь 2024 (1,000 руб.)</option>
-            <option value="december">Декабрь 2024 (1,000 руб.)</option>
-        </select>
+    <!-- Сборы 2024 -->
+    <div class="table-section">
+        <h2>Ежемесячные сборы 2024</h2>
+        <div class="total" id="2024-total">
+            Общая сумма: 1,000 руб./мес × 100 домов = 100,000 руб./мес
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Дом №</th>
+                    <th>Авг</th>
+                    <th>Сен</th>
+                    <th>Окт</th>
+                    <th>Ноя</th>
+                    <th>Дек</th>
+                </tr>
+            </thead>
+            <tbody>
+                <script>
+                    // Генерация таблицы 2024
+                    document.write(Array.from({length: 100}, (_, i) => 
+                        `<tr>
+                            <td>${i+1}</td>
+                            ${Array.from({length: 5}, (_, m) => 
+                                `<td><input type="checkbox" id="2024-${m+8}-${i+1}" onclick="saveState()"></td>`
+                            ).join('')}
+                        </tr>`
+                    ).join(''));
+                </script>
+            </tbody>
+        </table>
     </div>
 
-    <table id="paymentTable">
-        <thead>
-            <tr>
-                <th>№ дома</th>
-                <th>Фамилия</th>
-                <th>Статус оплаты</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Дома 1-10 -->
-            <tr>
-                <td>1</td>
-                <td>Иванов</td>
-                <td><input type="checkbox" id="house1-june" onclick="saveState()"></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Петров</td>
-                <td><input type="checkbox" id="house2-june" onclick="saveState()"></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Сидоров</td>
-                <td><input type="checkbox" id="house3-june" onclick="saveState()"></td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Кузнецов</td>
-                <td><input type="checkbox" id="house4-june" onclick="saveState()"></td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>Смирнов</td>
-                <td><input type="checkbox" id="house5-june" onclick="saveState()"></td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>Васильев</td>
-                <td><input type="checkbox" id="house6-june" onclick="saveState()"></td>
-            </tr>
-            <tr>
-                <td>7</td>
-                <td>Павлов</td>
-                <td><input type="checkbox" id="house7-june" onclick="saveState()"></td>
-            </tr>
-            <tr>
-                <td>8</td>
-                <td>Семёнов</td>
-                <td><input type="checkbox" id="house8-june" onclick="saveState()"></td>
-            </tr>
-            <tr>
-                <td>9</td>
-                <td>Голубев</td>
-                <td><input type="checkbox" id="house9-june" onclick="saveState()"></td>
-            </tr>
-            <tr>
-                <td>10</td>
-                <td>Виноградов</td>
-                <td><input type="checkbox" id="house10-june" onclick="saveState()"></td>
-            </tr>
-        </tbody>
-    </table>
-
-    <div class="total">
-        <p>Общий сбор: <span id="totalAmount">0</span> руб.</p>
-        <p>Собрано: <span id="collectedAmount">0</span> руб.</p>
+    <!-- Сборы 2025 -->
+    <div class="table-section">
+        <h2>Ежемесячные сборы 2025</h2>
+        <div class="total" id="2025-total">
+            Общая сумма: 1,000 руб./мес × 100 домов = 100,000 руб./мес
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Дом №</th>
+                    <th>Янв</th>
+                    <th>Фев</th>
+                    <th>Мар</th>
+                    <th>Апр</th>
+                    <th>Май</th>
+                    <th>Июн</th>
+                    <th>Июл</th>
+                    <th>Авг</th>
+                    <th>Сен</th>
+                    <th>Окт</th>
+                    <th>Ноя</th>
+                    <th>Дек</th>
+                </tr>
+            </thead>
+            <tbody>
+                <script>
+                    // Генерация таблицы 2025
+                    document.write(Array.from({length: 100}, (_, i) => 
+                        `<tr>
+                            <td>${i+1}</td>
+                            ${Array.from({length: 12}, (_, m) => 
+                                `<td><input type="checkbox" id="2025-${m+1}-${i+1}" onclick="saveState()"></td>`
+                            ).join('')}
+                        </tr>`
+                    ).join(''));
+                </script>
+            </tbody>
+        </table>
     </div>
 
     <footer>
         <p>Последнее обновление: <span id="lastUpdate"></span></p>
-        <p>По вопросам обращаться: 8-XXX-XXX-XX-XX</p>
+        <p>Для внесения изменений обращаться к ответственному лицу</p>
     </footer>
 
     <script>
+        // Сохранение состояния всех чекбоксов
+        function saveState() {
+            const state = {};
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                state[checkbox.id] = checkbox.checked;
+            });
+            localStorage.setItem('paymentState', JSON.stringify(state));
+            updateLastModified();
+        }
+
         // Загрузка сохраненных данных
         function loadState() {
             const savedState = localStorage.getItem('paymentState');
             if (savedState) {
                 const state = JSON.parse(savedState);
-                for (const key in state) {
-                    const checkbox = document.getElementById(key);
-                    if (checkbox) {
-                        checkbox.checked = state[key];
-                    }
-                }
+                Object.entries(state).forEach(([id, checked]) => {
+                    const checkbox = document.getElementById(id);
+                    if (checkbox) checkbox.checked = checked;
+                });
             }
             updateLastModified();
-            calculateTotals();
         }
 
-        // Сохранение состояния чекбоксов
-        function saveState() {
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-            const state = {};
-            
-            checkboxes.forEach(checkbox => {
-                state[checkbox.id] = checkbox.checked;
-            });
-            
-            localStorage.setItem('paymentState', JSON.stringify(state));
-            calculateTotals();
-            updateLastModified();
-        }
-
-        // Обновление таблицы при выборе месяца
-        function updateTable() {
-            const month = document.getElementById('monthSelect').value;
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-            
-            checkboxes.forEach(checkbox => {
-                const parts = checkbox.id.split('-');
-                checkbox.id = parts[0] + '-' + month;
-            });
-        }
-
-        // Расчет собранной суммы
-        function calculateTotals() {
-            const month = document.getElementById('monthSelect').value;
-            let amountPerHouse;
-            
-            if (month === 'june') amountPerHouse = 6000;
-            else if (month === 'july') amountPerHouse = 5000;
-            else amountPerHouse = 1000;
-            
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-            let paidCount = 0;
-            
-            checkboxes.forEach(checkbox => {
-                if (checkbox.checked) paidCount++;
-            });
-            
-            const houseCount = checkboxes.length;
-            document.getElementById('totalAmount').textContent = (houseCount * amountPerHouse).toLocaleString();
-            document.getElementById('collectedAmount').textContent = (paidCount * amountPerHouse).toLocaleString();
-        }
-
-        // Обновление даты последнего изменения
+        // Обновление времени последнего изменения
         function updateLastModified() {
-            const now = new Date();
-            document.getElementById('lastUpdate').textContent = now.toLocaleString('ru-RU');
+            document.getElementById('lastUpdate').textContent = new Date().toLocaleString('ru-RU');
         }
 
         // Инициализация при загрузке
-        window.onload = function() {
-            loadState();
-            document.getElementById('monthSelect').addEventListener('change', calculateTotals);
-        };
+        window.onload = loadState;
     </script>
 </body>
 </html>
