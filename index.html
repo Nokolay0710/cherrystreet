@@ -4,123 +4,246 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RoboTech - Сайт в разработке</title>
+    <title>Улица Вишнёвая - Сбор средств на дорогу</title>
     <style>
         * {
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif;
         }
-
         body {
-            background-color: #f0f4f8;
-            line-height: 1.6;
-            color: #2d3748;
-        }
-
-        .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
         }
-
         header {
             text-align: center;
-            padding: 3rem 0;
-            background-color: #2b6cb0;
-            color: white;
-            margin-bottom: 2rem;
-            border-radius: 0 0 15px 15px;
+            padding: 20px 0;
+            border-bottom: 2px solid #4CAF50;
+            margin-bottom: 30px;
         }
-
-        .robot-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-        }
-
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            color: #4CAF50;
         }
-
-        .content-section {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
+        .info-block {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
         }
-
-        .highlight {
-            color: #2b6cb0;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .paid {
+            color: green;
             font-weight: bold;
         }
-
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: #718096;
-            margin-top: 3rem;
+        .total {
+            font-weight: bold;
+            margin-top: 20px;
         }
-
-        @media (max-width: 600px) {
-            .container {
-                padding: 1rem;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
+        .month-selector {
+            margin: 20px 0;
+        }
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #666;
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header>
-        <div class="container">
-            <i class="fas fa-robot robot-icon"></i>
-            <h1>RoboTech</h1>
-            <p>Искусственный интеллект нового поколения</p>
-        </div>
+        <h1>Улица Вишнёвая</h1>
+        <p>Сбор средств на ремонт дороги</p>
     </header>
 
-    <div class="container">
-        <div class="content-section">
-            <h2>🚀 Наш сайт скоро заработает!</h2>
-            <p>Мы работаем над созданием уникальной платформы для управления умными роботами следующего поколения.</p>
-            <p class="highlight">Ожидайте революционных изменений в сфере человеко-машинного взаимодействия!</p>
-        </div>
+    <div class="info-block">
+        <h2>Информация о сборах</h2>
+        <p><strong>2024 год:</strong></p>
+        <ul>
+            <li>Первый сбор: 6,000 руб. (до 15 июня)</li>
+            <li>Второй сбор: 5,000 руб. (до 15 июля)</li>
+            <li>Ежемесячные сборы: 1,000 руб. (начиная с августа)</li>
+        </ul>
+    </div>
 
-        <div class="content-section">
-            <h3>🤖 Наши технологии</h3>
-            <p>Разрабатываем автономных роботов с:</p>
-            <ul>
-                <li>Нейросетевым управлением</li>
-                <li>Компьютерным зрением</li>
-                <li>Системой тактильного отклика</li>
-                <li>Адаптивными алгоритмами обучения</li>
-            </ul>
-        </div>
+    <div class="month-selector">
+        <h3>Выберите месяц для отображения:</h3>
+        <select id="monthSelect" onchange="updateTable()">
+            <option value="june">Июнь 2024 (6,000 руб.)</option>
+            <option value="july">Июль 2024 (5,000 руб.)</option>
+            <option value="august">Август 2024 (1,000 руб.)</option>
+            <option value="september">Сентябрь 2024 (1,000 руб.)</option>
+            <option value="october">Октябрь 2024 (1,000 руб.)</option>
+            <option value="november">Ноябрь 2024 (1,000 руб.)</option>
+            <option value="december">Декабрь 2024 (1,000 руб.)</option>
+        </select>
+    </div>
 
-        <div class="content-section">
-            <h3>🌍 Применение роботов</h3>
-            <p>Наши разработки будут использоваться в:</p>
-            <div style="columns: 2; margin: 1rem 0;">
-                <p>• Медицинской диагностике<br>
-                • Промышленном производстве<br>
-                • Космических исследованиях<br>
-                • Образовательных целях</p>
-            </div>
-        </div>
+    <table id="paymentTable">
+        <thead>
+            <tr>
+                <th>№ дома</th>
+                <th>Фамилия</th>
+                <th>Статус оплаты</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Дома 1-10 -->
+            <tr>
+                <td>1</td>
+                <td>Иванов</td>
+                <td><input type="checkbox" id="house1-june" onclick="saveState()"></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Петров</td>
+                <td><input type="checkbox" id="house2-june" onclick="saveState()"></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Сидоров</td>
+                <td><input type="checkbox" id="house3-june" onclick="saveState()"></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Кузнецов</td>
+                <td><input type="checkbox" id="house4-june" onclick="saveState()"></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Смирнов</td>
+                <td><input type="checkbox" id="house5-june" onclick="saveState()"></td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Васильев</td>
+                <td><input type="checkbox" id="house6-june" onclick="saveState()"></td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Павлов</td>
+                <td><input type="checkbox" id="house7-june" onclick="saveState()"></td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Семёнов</td>
+                <td><input type="checkbox" id="house8-june" onclick="saveState()"></td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Голубев</td>
+                <td><input type="checkbox" id="house9-june" onclick="saveState()"></td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>Виноградов</td>
+                <td><input type="checkbox" id="house10-june" onclick="saveState()"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="total">
+        <p>Общий сбор: <span id="totalAmount">0</span> руб.</p>
+        <p>Собрано: <span id="collectedAmount">0</span> руб.</p>
     </div>
 
     <footer>
-        <div class="container">
-            <p>© 2024 RoboTech. Все права защищены</p>
-            <p>Контакты: info@robotech.ai | +7 (495) 123-45-67</p>
-            <p style="margin-top: 1rem;">Сайт находится в стадии активной разработки</p>
-        </div>
+        <p>Последнее обновление: <span id="lastUpdate"></span></p>
+        <p>По вопросам обращаться: 8-XXX-XXX-XX-XX</p>
     </footer>
+
+    <script>
+        // Загрузка сохраненных данных
+        function loadState() {
+            const savedState = localStorage.getItem('paymentState');
+            if (savedState) {
+                const state = JSON.parse(savedState);
+                for (const key in state) {
+                    const checkbox = document.getElementById(key);
+                    if (checkbox) {
+                        checkbox.checked = state[key];
+                    }
+                }
+            }
+            updateLastModified();
+            calculateTotals();
+        }
+
+        // Сохранение состояния чекбоксов
+        function saveState() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const state = {};
+            
+            checkboxes.forEach(checkbox => {
+                state[checkbox.id] = checkbox.checked;
+            });
+            
+            localStorage.setItem('paymentState', JSON.stringify(state));
+            calculateTotals();
+            updateLastModified();
+        }
+
+        // Обновление таблицы при выборе месяца
+        function updateTable() {
+            const month = document.getElementById('monthSelect').value;
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            
+            checkboxes.forEach(checkbox => {
+                const parts = checkbox.id.split('-');
+                checkbox.id = parts[0] + '-' + month;
+            });
+        }
+
+        // Расчет собранной суммы
+        function calculateTotals() {
+            const month = document.getElementById('monthSelect').value;
+            let amountPerHouse;
+            
+            if (month === 'june') amountPerHouse = 6000;
+            else if (month === 'july') amountPerHouse = 5000;
+            else amountPerHouse = 1000;
+            
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            let paidCount = 0;
+            
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) paidCount++;
+            });
+            
+            const houseCount = checkboxes.length;
+            document.getElementById('totalAmount').textContent = (houseCount * amountPerHouse).toLocaleString();
+            document.getElementById('collectedAmount').textContent = (paidCount * amountPerHouse).toLocaleString();
+        }
+
+        // Обновление даты последнего изменения
+        function updateLastModified() {
+            const now = new Date();
+            document.getElementById('lastUpdate').textContent = now.toLocaleString('ru-RU');
+        }
+
+        // Инициализация при загрузке
+        window.onload = function() {
+            loadState();
+            document.getElementById('monthSelect').addEventListener('change', calculateTotals);
+        };
+    </script>
 </body>
 </html>
